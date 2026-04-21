@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace Tests\Feature;
 
@@ -274,7 +274,7 @@ class SkillHubTest extends TestCase
         ], $this->headers($token));
 
         $response->assertStatus(200)
-            ->assertJsonFragment(['message' => 'Formation mise Ã  jour avec succès']);
+            ->assertJsonFragment(['message' => 'Formation mise à jour avec succès']);
     }
 
     #[Test]
@@ -393,7 +393,7 @@ class SkillHubTest extends TestCase
         ], $this->headers($token));
 
         $response->assertStatus(200)
-            ->assertJsonFragment(['message' => 'Module mis Ã  jour avec succès']);
+            ->assertJsonFragment(['message' => 'Module mis à jour avec succès']);
     }
 
     #[Test]
@@ -579,7 +579,7 @@ class SkillHubTest extends TestCase
         $response = $this->postJson(self::API_MODULES_PREFIX . $module->id . self::PATH_TERMINER, [], $this->headers($token));
 
         $response->assertStatus(200)
-            ->assertJsonFragment(['message' => 'Ce module est déjÃ  terminé']);
+            ->assertJsonFragment(['message' => 'Ce module est déjà terminé']);
     }
 
     #[Test]
@@ -743,7 +743,7 @@ class SkillHubTest extends TestCase
 
         $response = $this->postJson(self::API_MESSAGES_ENVOYER, [
             'destinataire_id' => $user->id,
-            'contenu'         => 'Message Ã  moi-même',
+            'contenu'         => 'Message à moi-même',
         ], $this->headers($token));
 
         $response->assertStatus(422);

@@ -43,8 +43,14 @@ jobs:
           php artisan key:generate
           php artisan config:clear
 
-      - name: Executer les tests PHPUnit
-        run: php artisan test --env=testing
+      - name: Executer les tests PHPUnit avec coverage
+        run: php artisan test --env=testing --coverage-clover coverage.xml
+
+      - name: Analyse SonarCloud
+        uses: sonarsource/sonarcloud-github-action@v3
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   docker:
     name: Build et Push Docker Hub
