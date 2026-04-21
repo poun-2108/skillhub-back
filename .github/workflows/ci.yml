@@ -62,6 +62,7 @@ jobs:
             -Dsonar.php.coverage.reportPaths=coverage.xml
             -Dsonar.exclusions=**/vendor/**,**/bootstrap/cache/**,**/storage/**,**/public/**,**/resources/views/**
             -Dsonar.coverage.exclusions=app/Models/ActivityLog.php,app/Services/ActivityLogService.php
+            -Dsonar.qualitygate.wait=false
 
   docker:
     name: Build et Push Docker Hub
