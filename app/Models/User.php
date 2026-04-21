@@ -30,9 +30,16 @@ class User extends Authenticatable implements JWTSubject
         ];
     }
 
+    // Utilise l'email comme identifiant JWT pour compatibilite avec SpringBoot
     public function getJWTIdentifier()
     {
-        return $this->getKey();
+        return $this->email;
+    }
+
+    // Indique a tymon/jwt-auth de chercher l'utilisateur par email lors de la validation du token
+    public function getAuthIdentifierName()
+    {
+        return 'email';
     }
 
     public function getJWTCustomClaims(): array
