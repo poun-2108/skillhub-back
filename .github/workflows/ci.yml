@@ -19,6 +19,8 @@ jobs:
 
       - name: Checkout du code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Configurer PHP 8.2
         uses: shivammathur/setup-php@v2
@@ -51,6 +53,15 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=poun-2108
+            -Dsonar.projectKey=poun-2108_skillhub-back
+            -Dsonar.sources=app
+            -Dsonar.tests=tests
+            -Dsonar.php.coverage.reportPaths=coverage.xml
+            -Dsonar.exclusions=**/vendor/**,**/bootstrap/cache/**,**/storage/**,**/public/**,**/resources/views/**
+            -Dsonar.coverage.exclusions=app/Models/ActivityLog.php,app/Services/ActivityLogService.php
 
   docker:
     name: Build et Push Docker Hub
