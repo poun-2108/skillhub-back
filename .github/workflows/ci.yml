@@ -25,7 +25,7 @@ jobs:
         with:
           php-version: '8.2'
           extensions: pdo, pdo_mysql, pdo_sqlite, mbstring, zip, mongodb-2.2.0
-          coverage: xdebug
+          coverage: pcov
 
       - name: Cache Composer
         uses: actions/cache@v4
@@ -44,7 +44,7 @@ jobs:
           php artisan config:clear
 
       - name: Executer les tests PHPUnit avec coverage
-        run: php artisan test --env=testing --coverage-clover coverage.xml
+        run: ./vendor/bin/phpunit --coverage-clover coverage.xml
 
       - name: Analyse SonarCloud
         uses: sonarsource/sonarcloud-github-action@v3
